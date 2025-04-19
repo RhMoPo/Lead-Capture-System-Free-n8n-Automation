@@ -1,0 +1,535 @@
+{
+  "name": "Lead Capture System",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Interested in our Product/ Service?",
+        "formDescription": "Enter your details below and we will be back with you soon.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "First Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Last Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "respondWithOptions": {
+            "values": {
+              "formSubmittedText": "You're all set! Thanks for signing up — we’ve received your info and will follow up with next steps soon."
+            }
+          },
+          "customCss": ":root {\n  /* Fonts */\n  --font-family: 'Open Sans', sans-serif;\n  --font-weight-normal: 400;\n  --font-weight-bold: 600;\n\n  /* Font Sizes */\n  --font-size-body: 14px;\n  --font-size-label: 14px;\n  --font-size-input: 15px;\n  --font-size-header: 24px;\n  --font-size-paragraph: 15px;\n  --font-size-link: 14px;\n  --font-size-error: 13px;\n  --font-size-subheader: 16px;\n  --font-size-html-h1: 30px;\n  --font-size-html-h2: 24px;\n  --font-size-html-h3: 20px;\n  --font-size-html-h4: 18px;\n  --font-size-html-h5: 15px;\n  --font-size-html-h6: 13px;\n  --font-size-test-notice: 13px;\n\n  /* Colors - Theme */\n  --color-background: #f9fafb;\n  --color-card-bg: #ffffff;\n  --color-card-border: #e0e4ec;\n  --color-card-shadow: rgba(0, 0, 0, 0.04);\n\n  --color-header: #333333;\n  --color-header-subtext: #7e8186;\n  --color-label: #555555;\n  --color-html-text: #555555;\n  --color-html-link: #ff6d5a;\n\n  /* Colors - Input & UI */\n  --color-input-border: #cfd4dc;\n  --color-input-text: #4a4f57;\n  --color-focus-border: #5a4cca;\n\n  /* Colors - Buttons */\n  --color-submit-btn-bg: #ff6d5a;\n  --color-submit-btn-text: #ffffff;\n  --color-clear-button-bg: #7e8186;\n\n  /* Colors - Notices & Alerts */\n  --color-test-notice-text: #e6a23d;\n  --color-test-notice-bg: #fefaf6;\n  --color-test-notice-border: #f6dcb7;\n  --color-error: #ea1f30;\n  --color-required: #ff6d5a;\n\n  /* Border Radius */\n  --border-radius-card: 10px;\n  --border-radius-input: 8px;\n  --border-radius-clear-btn: 50%;\n\n  /* Spacing */\n  --padding-container-top: 32px;\n  --padding-card: 24px;\n  --padding-form-input: 14px;\n  --margin-bottom-card: 24px;\n  --padding-test-notice-vertical: 14px;\n  --padding-test-notice-horizontal: 24px;\n\n  /* Dimensions */\n  --container-width: 500px;\n  --submit-btn-height: 48px;\n  --checkbox-size: 18px;\n\n  /* Shadows */\n  --box-shadow-card: 0 4px 12px rgba(0, 0, 0, 0.06);\n\n  /* Misc */\n  --opacity-placeholder: 0.5;\n}\n"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -760,
+        -20
+      ],
+      "id": "16583a38-969a-4e0a-b08a-f12f4be63521",
+      "name": "On form submission",
+      "webhookId": "78f80002-5267-45af-b264-4eb9ced85f1b"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('client_info').item.json.Email }}",
+        "subject": "=🌟 Welcome Aboard, {{ $('client_info').item.json['First Name'] }}! Let's Talk Ideas! 🌟",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Email</title>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\n  <!-- Google Font -->\n  <link href=\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\" rel=\"stylesheet\">\n\n  <style>\n    body, table, td, a {\n      -webkit-text-size-adjust: 100%;\n      -ms-text-size-adjust: 100%;\n    }\n\n    body {\n      margin: 0;\n      padding: 0;\n      background-color: #f4f4f4;\n      font-family: 'Open Sans', Arial, sans-serif;\n    }\n\n    table {\n      border-collapse: collapse !important;\n    }\n\n    a {\n      color: inherit;\n      text-decoration: none;\n    }\n\n    .cta-button {\n      display: inline-block;\n      background-color: #2d89ef;\n      color: #ffffff !important;\n      padding: 14px 28px;\n      border-radius: 8px;\n      font-weight: bold;\n      font-size: 16px;\n      box-shadow: 0 4px 14px rgba(45, 137, 239, 0.3);\n      transition: all 0.35s ease;\n      transform: scale(1);\n    }\n\n    .cta-button:hover {\n      background-color: #1a6ed8;\n      box-shadow: 0 6px 20px rgba(45, 137, 239, 0.5);\n      transform: scale(1.03);\n    }\n\n    @media (prefers-reduced-motion: no-preference) {\n      .cta-button {\n        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;\n      }\n    }\n\n    @media only screen and (max-width: 600px) {\n      .container {\n        width: 100% !important;\n        padding: 20px !important;\n      }\n\n      .cta-button {\n        width: 100% !important;\n        text-align: center !important;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">\n    <tr>\n      <td align=\"center\" style=\"padding: 40px 10px;\">\n        <table class=\"container\" width=\"600\" style=\"max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);\">\n          \n          <!-- Header -->\n          <tr>\n            <td align=\"center\" style=\"background-color: #2d89ef; color: #ffffff; padding: 40px 30px; font-size: 28px; font-weight: 600; letter-spacing: 0.5px;\">\n              {{ $('email_variables').item.json.email_header }}\n            </td>\n          </tr>\n\n          <!-- Body -->\n          <tr>\n            <td style=\"padding: 32px 30px; color: #333333; font-size: 17px; line-height: 1.6;\">\n              <p style=\"margin-top: 0;\">Dear <strong>{{ $('client_info').item.json['First Name'] }}</strong>,</p>\n\n              <p><strong>{{ $('email_variables').item.json.welcome_message }}</strong></p>\n\n              <p>{{ $('email_variables').item.json.invitation_message }}</p>\n\n              <p><strong>{{ $('email_variables').item.json.cta_intro }}</strong></p>\n\n              <p style=\"text-align: center; margin: 40px 0;\">\n                <a href=\"{{ $('email_variables').item.json.cta_link }}\" class=\"cta-button\">\n                  {{ $('email_variables').item.json.cta_text }} &rarr;\n                </a>\n              </p>\n\n              <p>{{ $('email_variables').item.json.closing_message }}</p>\n\n              <p style=\"margin-bottom: 0;\">\n                Best regards,<br><br>\n                <strong>{{ $('email_variables').item.json.sender_first_name }} {{ $('email_variables').item.json.sender_last_name }}</strong><br>\n                {{ $('email_variables').item.json.sender_position }}<br>\n                {{ $('email_variables').item.json.sender_company }}<br>\n                <a href=\"mailto:{{ $('email_variables').item.json.sender_contact }}\" style=\"color: #2d89ef; text-decoration: none;\">\n                  {{ $('email_variables').item.json.sender_contact }}\n                </a>\n              </p>\n            </td>\n          </tr>\n\n          <!-- Divider -->\n          <tr>\n            <td>\n              <hr style=\"border: none; border-top: 1px solid #e0e0e0; margin: 0 30px;\">\n            </td>\n          </tr>\n\n          <!-- Footer -->\n          <tr>\n            <td align=\"center\" style=\"background-color: #f9f9f9; color: #999999; font-size: 12px; padding: 20px 30px;\">\n              {{ $('email_variables').item.json.footer_text }}\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n  </table>\n</body>\n</html>\n",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "={{ $('email_variables').item.json.sender_first_name }} {{ $('email_variables').item.json.sender_last_name }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        -20
+      ],
+      "id": "982bab61-ccf2-4bd8-bb05-655a2adefe9a",
+      "name": "Gmail",
+      "webhookId": "8af33e8b-715b-427d-87e5-0979b1074c17",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "HNz7ylihfMDV0ahB",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dcee1376-c6d3-4b1e-8a47-686366a97290",
+              "name": "First Name",
+              "value": "={{ $json['First Name'] }}",
+              "type": "string"
+            },
+            {
+              "id": "30bfab92-769d-46c0-be65-87e1e1d251df",
+              "name": "Last Name",
+              "value": "={{ $json['Last Name'] }}",
+              "type": "string"
+            },
+            {
+              "id": "b4c15826-3596-4967-972d-cfeb5bea550a",
+              "name": "Email",
+              "value": "={{ $json.Email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        40,
+        -20
+      ],
+      "id": "88b92d8d-653c-4a71-9414-d9fdea468417",
+      "name": "client_info"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"email_header\": \"Welcome to ______!\",\n  \"welcome_message\": \"Thank you so much for signing up! We're excited to have you on board.\",\n  \"invitation_message\": \"I'd love to invite you to a 30 minute no-obligation call to discuss (INSERT WHAT YOU WANT TO DISCUSS)\",\n  \"cta_intro\": \"Please feel free to schedule a time that suits you:\",\n  \"cta_link\": \"ADD_YOUR_LINK\",\n  \"cta_text\": \"Book a time with me\",\n  \"closing_message\": \"Looking forward to our chat!\",\n  \"sender_first_name\": \"YOUR_FIRST_NAME\",\n  \"sender_last_name\": \"YOUR_LAST_NAME\",\n  \"sender_position\": \"YOUR_POSITION\",\n  \"sender_company\": \"YOUR COMPANY\",\n  \"sender_contact\": \"YOUR_CONTACT\",\n  \"footer_text\": \"© 2025 YOUR COMPANY· All rights reserved\"\n}\n",
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -380,
+        -20
+      ],
+      "id": "0eab55e7-3597-41fe-8e3f-f948e2d9cab0",
+      "name": "email_variables"
+    },
+    {
+      "parameters": {
+        "content": "### 🟢 Node: `On form submission` (Form Trigger)\n\n**📌 What it does:**  \nThis is the starting point of the workflow. It shows a form titled:  \n**“Interested in our Product/Service?”**  \nIt asks for First Name, Last Name, and Email.\n\nOnce someone fills it in, the workflow begins.\n\n**🛠 You can customize:**\n- Form title and description\n- Add more fields (like phone number, budget, etc.)\n- Make fields optional or required\n- Change button color, fonts, etc. using `customCss`\n\n**💡 Tip:** Keep your form short and easy — the fewer steps, the more leads you'll get.\n",
+        "height": 660,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -800,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "16e5c96b-e7a2-4512-82e7-42695f6300cc",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "### 🟡 Node: `email_variables` (Set Node)\n\n**📌 What it does:**  \nThis node holds all the reusable content for your welcome email — like the subject line, greeting, booking link, and sender details.\n\n**🛠 You can customize:**\n- Your welcome message (`welcome_message`)\n- Call-to-action wording and booking link (`cta_intro`, `cta_link`)\n- Your name, role, company, and email\n- Footer or disclaimer text\n\n**💡 Tip:** Update these in one place to apply changes across the workflow instantly.",
+        "height": 600,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -420,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "2d91c48e-7adb-4172-a499-e23d38ff1a71",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "### 🟠 Node: `client_info` (Set Node)\n\n**📌 What it does:**  \nThis node maps the submitted form data (first name, last name, email) into variables for later use in the email and spreadsheet.\n\n**🛠 You can customize:**\n- Add more fields (like company, phone number)\n- Use conditions later (e.g., only email people with a business email)\n\n**💡 Tip:** This keeps your workflow organized and flexible.",
+        "height": 480,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        140
+      ],
+      "typeVersion": 1,
+      "id": "80a3423e-2c29-4bc0-b4d4-c5fb38951ccd",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "Need help customizing it?  \n📅 Book a free 15-min call: [Book Call](https://calendly.com/rmp71171/new-meeting)\n\n",
+        "height": 80,
+        "width": 280,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -120,
+        1060
+      ],
+      "typeVersion": 1,
+      "id": "34a151f2-0d1d-480b-a07b-a249b6c73b74",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## 🧠 Why I Made This\n\nI specifically chose **free and familiar tools like Google Sheets + Gmail** — and avoided AI APIs or paid CRMs — to help you:\n\n- 🧩 Keep costs **at zero**  \n- 🏃 Get started **immediately**  \n- 🎯 Focus on what actually matters: talking to leads and growing your business\n\nThis is perfect if you're not ready to invest in tools like HubSpot, Pipedrive, or paid AI integrations yet — but still want a professional, automated workflow.\n",
+        "height": 260,
+        "width": 620,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2700,
+        -180
+      ],
+      "typeVersion": 1,
+      "id": "837389cf-5421-41f5-8baf-d75c56d6d272",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "# 📥 Lead Capture System — Free n8n Automation by Rhmopo\n\nThis free automation helps you **capture leads through a form**, save their info to Google Sheets, and **automatically send them a personalized email with a booking link** — no coding required.\n\nPerfect for:  \n📢 Coaches · 🔥 Course Creators · 🤖 SaaS Founders · 🧰 Service Providers\n",
+        "height": 280,
+        "width": 620,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2700,
+        -480
+      ],
+      "typeVersion": 1,
+      "id": "8083d4c7-200e-41bf-9546-b8333c0fdc69",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "### 🟣 Node: `Gmail`\n\n**📌 What it does:**  \nSends a personalized welcome email immediately after the form is submitted. It uses the data and template set in earlier nodes.\n\n**🛠 You can customize:**\n- Email subject and content (uses HTML for formatting)\n- Swap Gmail for Outlook, SendGrid, or any other email service\n- Add tracking links, a PDF, or embed a calendar widget\n\n**💡 Tip:** Fast follow-up = higher conversion. Personalize this message as much as possible.",
+        "height": 540,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        840,
+        140
+      ],
+      "typeVersion": 1,
+      "id": "07a96395-a307-4961-9f40-1e5f961eb21c",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "### 🔵 Node: `Google Sheets`\n\n**📌 What it does:**  \nSaves every new lead into your Google Sheet so you can:\n- View all leads in one place\n- Filter, sort, or export them later\n- Use it as a basic free CRM\n\n**🛠 You can customize:**\n- The spreadsheet or tab name\n- Add more columns for extra fields\n- Use matching columns to avoid duplicates\n\n**💡 Tip:** This is where your lead list lives — keep it backed up!\n\n**You will need to setup with your own credentials.**",
+        "height": 600,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        420,
+        140
+      ],
+      "typeVersion": 1,
+      "id": "58525945-c552-4547-9483-827430c94813",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## ✅ Next Steps for You\n\n- 🧪 Test the form with your own email\n- ✏️ Tweak the form and email to match your offer\n- 🔗 Share your form on your website, landing page, or link in bio\n- 📈 Use the Google Sheet to track responses over time",
+        "height": 180,
+        "width": 480,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -220,
+        860
+      ],
+      "typeVersion": 1,
+      "id": "0a3b98dd-5d2e-497a-84cb-a1a3e4f095e4",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1760,
+        20
+      ],
+      "id": "abdc87b3-4a4e-4944-a6f1-cc2cc5a5305c",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1320,
+        20
+      ],
+      "id": "778c50b8-266a-415a-9c1c-ccdd909c8d27",
+      "name": "Create Blank Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zBLWQOWanPLhoJQw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "### 🟤 Node: `Create Blank Sheet` (Google Sheets)\n\n**📌 What it does:**  \nThis node is used **one time only** to automatically create a new Google Sheet — the one your automation will write leads to.\n\nYou trigger it manually by clicking **“Execute Node”** in n8n.\n\n---\n\n**⚠️ Important Notes:**\n\n- This is **not part of the live automation** — it’s only for setup.\n- After the sheet is created, go into Google Sheets and manually add these columns in the first row:\n  - `First Name`\n  - `Last Name`\n  - `Email`\n- These column names must match the form field labels — spelled exactly like that.\n\n---\n\n**📛 Sheet Name Tip:**  \nYou can name the spreadsheet **whatever you like**, but that name **must exactly match** what you use in the **main Google Sheets node** later in the workflow.\n\n> Example: If you name the sheet `My CRM Leads`, make sure the Google Sheets node also uses `My CRM Leads` as the document name.\n\n---\n\n**📝 Or do this manually instead:**  \n1. Go to [Google Sheets](https://sheets.google.com)  \n2. Create a new sheet and name it  \n3. In the first row, add columns: `First Name`, `Last Name`, `Email`  \n4. Update your Google Sheets node in n8n to match your sheet’s name and tab\n\n---\n\n**✅ You can customize:**\n- Sheet name (just be consistent!)\n- Tab/sheet name (`Sheet1` is default — change it only if you also update the node)\n\n**💡 Tip:** Once setup is complete, you can delete or disable this node — it’s not required after your sheet is ready.\n",
+        "height": 1020,
+        "width": 760
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1840,
+        180
+      ],
+      "typeVersion": 1,
+      "id": "df27320c-e65d-486f-adc5-3b4b9106c3e8",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "## ✅ STEP 1: Create Your Lead Sheet\n\nThis step sets up the Google Sheet where your leads will be saved.\n\n---\n\n### 🔧 Instructions:\n\n1. **Double-click** the `Create Blank Sheet` node.\n2. Click on **\"Credentials to connect with\"** and create new credentials if you haven’t already.\n3. Click **\"Sign in with Google\"** and follow the prompts to authorize n8n.\n4. Click the **\"Title\"** textbox and enter the name of your spreadsheet (e.g. `Lead List`).\n5. Click **\"Test Setup\"** to make sure the connection works.\n6. Go to [Google Sheets](https://sheets.google.com) — you’ll see the new spreadsheet with the title you just entered.\n\n---\n\n### 📄 Now set up the sheet:\n\n1. In the **first row**, add these three column headers:\n   - `First Name`\n   - `Last Name`\n   - `Email`\n\n2. Highlight that first row.\n\n3. In the toolbar, click **View → Freeze → 1 row** to lock the headers in place.\n\n---\n\n**⚠️ Important:**  \nThe spreadsheet name you choose **must exactly match** the one used later in the `Google Sheets` node of your workflow.\n\n",
+        "height": 820,
+        "width": 760,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1840,
+        -820
+      ],
+      "typeVersion": 1,
+      "id": "a38ad705-474b-4415-83cf-938dc69f907a",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "## ✅ STEP 4: Connect and Test the Lead Capture Sheet\n\nNow it’s time to connect the form to your sheet and map the submitted data.\n\n---\n\n### 🔧 Instructions:\n\n1. **Double-click** the second Google Sheets node titled **`Input Customer Info`**.\n2. In the **Document** textbox, select the name of the spreadsheet you created earlier (e.g. `Lead List`).\n3. In the **Sheet** textbox, select `Sheet1` (or whatever tab name you used in Google Sheets).\n4. Under **Column Mapping Mode**, choose **\"Map each column manually\"** for full control.\n5. In the **Column to match on** field, select `\"First Name\"`.\n\n---\n\n### 🧪 Populate Test Data:\n\nTo map the fields, you need sample data:\n\n1. Click **\"Test Workflow\"** at the bottom of the n8n screen (outside the node).\n2. A submission form will appear — enter:\n   - A first name\n   - A last name\n   - A valid email address\n3. The workflow will **fail on purpose** — this is okay!  \n   The goal is just to create test data for mapping.\n\n---\n\n### 🧩 Map Your Fields:\n\n1. Go back to the **`Input Customer Info`** node and open it again.\n2. On the left (under **Input**), you’ll see the sample payload.\n3. Under `client_info`, you’ll find:\n   - `First Name`\n   - `Last Name`\n   - `Email`\n4. **Drag and drop** each of those fields into their corresponding boxes under **Values to Send**.\n5. Click **\"Test Step\"** to push this data to your Google Sheet.\n\n---\n\n### ✅ Verify Your Setup:\n\n1. Head back to your spreadsheet.\n2. You should now see a new row with the submitted data!\n\n---\n\n### 🌐 Go Live:\n\nYou're ready to share your form!\n\n1. Click the **`On form submission`** node (at the top of the workflow).\n2. Click **\"Production URL\"** to copy your live form link.\n3. Paste this link wherever you want to collect leads:\n   - Social media bios\n   - Linktree\n   - Landing pages\n   - QR codes, and more\n\n---\n\n**🎉 You’re all set!**  \nYour Lead Capture System is now live and ready to bring in leads while you focus on what matters most.\n",
+        "height": 1600,
+        "width": 640,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        200,
+        -1640
+      ],
+      "typeVersion": 1,
+      "id": "c92f555f-f474-4e6e-bd70-487cde23b2c0",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        -20
+      ],
+      "id": "93ab9aa6-a553-4ec9-b1db-534ea4233fde",
+      "name": "Input Customer Info",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zBLWQOWanPLhoJQw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## ✅ STEP 3: Connect to Your Google Account\n\nThis step connects your n8n workflow to your Google account so it can access your Google Sheet.\n\n---\n\n### 🔧 Instructions:\n\n1. Click on **\"Credentials to connect with\"** inside the Google Sheets node.\n2. If you haven’t already, click **\"Create New\"** to add credentials.\n3. Click **\"Sign in with Google\"** and follow the prompts to authorize access.\n4. Once connected, select your account from the dropdown to confirm the integration.\n\n---\n\n**💡 Tip:**  \nYou only need to do this once — n8n will remember your credentials for future workflows.\n",
+        "height": 540,
+        "width": 580,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1120,
+        -240
+      ],
+      "typeVersion": 1,
+      "id": "0ce87405-027c-4fff-8417-332b6fde90b7",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "content": "## KEY:\n",
+        "height": 300,
+        "width": 620,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2700,
+        100
+      ],
+      "typeVersion": 1,
+      "id": "06370b79-362b-40e4-a374-8d8cead7dee6",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "content": "# Blue Sticky Notes:\n## STEPS TO SETUP THE WORKFLOW",
+        "height": 220,
+        "width": 280,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2680,
+        160
+      ],
+      "id": "4ae7f048-7f57-4678-b34e-37163136ac88",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "content": "# Yellow Sticky Notes\n## ADDITIONAL INFORMATION",
+        "height": 220,
+        "width": 280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2380,
+        160
+      ],
+      "id": "17b49fde-ddcc-4d7a-849b-89390d25da17",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "content": "# START HERE",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2540,
+        -580
+      ],
+      "typeVersion": 1,
+      "id": "b37d745a-a3d1-45b5-a15d-a900bdb0e2e7",
+      "name": "Sticky Note17"
+    },
+    {
+      "parameters": {
+        "content": "## ✅ STEP 2: Customize Your Email Content\n\nNow it’s time to personalize the email that your leads will receive after submitting the form.\n\n---\n\n### 🔧 Instructions:\n\n1. **Double-click** the `email_variables` node in your workflow.\n2. You’ll see a list of pre-filled fields like:\n   - `welcome_message`\n   - `invitation_message`\n   - `cta_intro`\n   - `cta_link`\n   - `sender_name`, `position`, and more\n3. **Update these fields to match your voice, offer, and branding.**  \n   For example:\n   - Change the message to reflect *why* you’re reaching out\n   - Add your **Calendly** or booking link to `cta_link`\n   - Update the sender’s name, position, and company info\n\n---\n\n### 🧠 What This Does:\nThese values will be used to generate the personalized welcome email — so you don’t need to hard-code anything later.\n\n---\n\n**💡 Tip:** You can come back and update these values anytime without changing the HTML email or logic of the automation.\n",
+        "height": 1120,
+        "width": 340,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -500,
+        -1160
+      ],
+      "typeVersion": 1,
+      "id": "ef29637c-2979-46f9-ac18-bff879893af8",
+      "name": "Sticky Note16"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "email_variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "client_info": {
+      "main": [
+        [
+          {
+            "node": "Input Customer Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "email_variables": {
+      "main": [
+        [
+          {
+            "node": "client_info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Create Blank Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Blank Sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Input Customer Info": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "943319a9-6923-4ebf-9f09-01fb6e79f730",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "447f72d734e0a310bc069ac4510efc5607b5b1c881ce7f9937047dc9b9983ba4"
+  },
+  "id": "D6XGQlpDtx94S87L",
+  "tags": []
+}
