@@ -21,16 +21,6 @@ Perfect for:
 
 ---
 
-### 🔍 What's Included
-
-- `Lead_Capture_System.json` – the full n8n workflow  
-- `Lead_Capture_Workflow_Guide.pdf` – step-by-step visual guide  
-- `Lead_Capture_Workflow_Guide.docx` – editable Word version
-
-Everything is annotated, explained, and meant to be built upon.
-
----
-
 ### 🧠 Why This Exists
 
 This project was made for solo entrepreneurs and small teams who want to automate like the pros — without breaking the bank or hiring a developer. It’s a simple starting point into the world of **n8n**, where you can begin creating automations that actually move your business forward.
